@@ -14,7 +14,7 @@ import (
 var (
 	ContentTypeHeaderMissingError         = errors.New("content type header missing")
 	ContentTypeHeaderNotMultipartError    = errors.New("content type header not multipart error")
-	ContentTypeHeaderMissingBoundaryError = errors.New("content type header boundary missing error")
+	ContentTypeHeaderMissingBoundaryError = errors.New("content type header missing boundary error")
 )
 
 type Headers map[string]string
