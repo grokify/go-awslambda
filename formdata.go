@@ -13,13 +13,13 @@ import (
 
 var (
 	ContentTypeHeaderMissingError         = errors.New("content type header missing")
-	ContentTypeHeaderNotFormdataError     = errors.New("content type header not form-data error")
+	ContentTypeHeaderNotMultipartError    = errors.New("content type header not multipart error")
 	ContentTypeHeaderMissingBoundaryError = errors.New("content type header boundary missing error")
 )
 
-type LambdaHeaders map[string]string
+type Headers map[string]string
 
-func (h LambdaHeaders) MustGet(headerName string) string {
+func (h Headers) MustGet(headerName string) string {
 	headerName = strings.ToLower(strings.TrimSpace(headerName))
 	for key, val := range h {
 		if strings.ToLower(strings.TrimSpace(key)) == headerName {
@@ -29,8 +29,8 @@ func (h LambdaHeaders) MustGet(headerName string) string {
 	return ""
 }
 
-func NewReaderFormdata(req events.APIGatewayProxyRequest) (*multipart.Reader, error) {
-	headers := LambdaHeaders(req.Headers)
+func NewReaderMultipart(req events.APIGatewayProxyRequest) (*multipart.Reader, error) {
+	headers := Headers(req.Headers)
 	ct := headers.MustGet("content-type")
 	if len(ct) == 0 {
 		return nil, ContentTypeHeaderMissingError
@@ -42,7 +42,7 @@ func NewReaderFormdata(req events.APIGatewayProxyRequest) (*multipart.Reader, er
 	}
 
 	if strings.Index(strings.ToLower(strings.TrimSpace(mediatype)), "multipart/") != 0 {
-		return nil, ContentTypeHeaderNotFormdataError
+		return nil, ContentTypeHeaderNotMultipartError
 	}
 
 	boundary, ok := params["boundary"]

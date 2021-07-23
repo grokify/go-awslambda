@@ -20,7 +20,7 @@ type customStruct struct {
 
 func handleRequest(ctx context.Context, req events.APIGatewayProxyRequest) (events.APIGatewayProxyResponse, error) {
 	res := events.APIGatewayProxyResponse{}
-	r, err := awslambda.NewReaderFormdata(req)
+	r, err := awslambda.NewReaderMultipart(req)
 	if err != nil {
 		return res, err
 	}
