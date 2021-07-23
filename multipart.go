@@ -17,8 +17,13 @@ var (
 	ContentTypeHeaderMissingBoundaryError = errors.New("content type header missing boundary error")
 )
 
+// Headers represents the AWS Lambda Headers definition which is a
+// `map[string]string`.
 type Headers map[string]string
 
+// MustGet returns a header value or empty string. It matches header names in
+// a case insensitive fasion as described in
+// https://github.com/aws/aws-lambda-go/issues/117.
 func (h Headers) MustGet(key string) string {
 	key = strings.ToLower(strings.TrimSpace(key))
 	for k, v := range h {
@@ -29,6 +34,8 @@ func (h Headers) MustGet(key string) string {
 	return ""
 }
 
+// NewReaderMultipart returns a `*multipart.Reader` given an
+// API Gateway Proxy Request.
 func NewReaderMultipart(req events.APIGatewayProxyRequest) (*multipart.Reader, error) {
 	headers := Headers(req.Headers)
 	ct := headers.MustGet("content-type")
