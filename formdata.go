@@ -19,11 +19,11 @@ var (
 
 type Headers map[string]string
 
-func (h Headers) MustGet(headerName string) string {
-	headerName = strings.ToLower(strings.TrimSpace(headerName))
-	for key, val := range h {
-		if strings.ToLower(strings.TrimSpace(key)) == headerName {
-			return val
+func (h Headers) MustGet(key string) string {
+	key = strings.ToLower(strings.TrimSpace(key))
+	for k, v := range h {
+		if strings.ToLower(strings.TrimSpace(k)) == key {
+			return v
 		}
 	}
 	return ""
