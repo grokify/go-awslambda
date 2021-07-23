@@ -38,7 +38,7 @@ func (h Headers) MustGet(key string) string {
 // API Gateway Proxy Request.
 func NewReaderMultipart(req events.APIGatewayProxyRequest) (*multipart.Reader, error) {
 	headers := Headers(req.Headers)
-	ct := headers.MustGet("content-type")
+	ct := strings.TrimSpace(headers.MustGet("content-type"))
 	if len(ct) == 0 {
 		return nil, ContentTypeHeaderMissingError
 	}
