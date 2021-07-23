@@ -6,6 +6,7 @@ import (
 	"errors"
 	"mime"
 	"mime/multipart"
+	"net/http"
 	"strings"
 
 	"github.com/aws/aws-lambda-go/events"
@@ -17,28 +18,19 @@ var (
 	ContentTypeHeaderMissingBoundaryError = errors.New("content type header missing boundary error")
 )
 
-// Headers represents the AWS Lambda Headers definition which is a
-// `map[string]string`.
-type Headers map[string]string
-
-// MustGet returns a header value or empty string. It matches header names in
-// a case insensitive fasion as described in
-// https://github.com/aws/aws-lambda-go/issues/117.
-func (h Headers) MustGet(key string) string {
-	key = strings.ToLower(strings.TrimSpace(key))
-	for k, v := range h {
-		if strings.ToLower(strings.TrimSpace(k)) == key {
-			return v
-		}
+func StandardHeader(header map[string]string) http.Header {
+	h := http.Header{}
+	for k, v := range header {
+		h.Add(strings.TrimSpace(k), v)
 	}
-	return ""
+	return h
 }
 
-// NewReaderMultipart returns a `*multipart.Reader` given an
-// API Gateway Proxy Request.
+// NewReaderMultipart returns a `*multipart.Reader` given an API Gateway Proxy
+// Request.
 func NewReaderMultipart(req events.APIGatewayProxyRequest) (*multipart.Reader, error) {
-	headers := Headers(req.Headers)
-	ct := strings.TrimSpace(headers.MustGet("content-type"))
+	headers := StandardHeader(req.Headers)
+	ct := headers.Get("content-type")
 	if len(ct) == 0 {
 		return nil, ContentTypeHeaderMissingError
 	}
@@ -52,8 +44,8 @@ func NewReaderMultipart(req events.APIGatewayProxyRequest) (*multipart.Reader, e
 		return nil, ContentTypeHeaderNotMultipartError
 	}
 
-	paramsInsensitiveKeys := Headers(params)
-	boundary := strings.TrimSpace(paramsInsensitiveKeys.MustGet("boundary"))
+	paramsInsensitiveKeys := StandardHeader(params)
+	boundary := paramsInsensitiveKeys.Get("boundary")
 	if len(boundary) == 0 {
 		return nil, ContentTypeHeaderMissingBoundaryError
 	}
