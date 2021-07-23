@@ -52,8 +52,9 @@ func NewReaderMultipart(req events.APIGatewayProxyRequest) (*multipart.Reader, e
 		return nil, ContentTypeHeaderNotMultipartError
 	}
 
-	boundary, ok := params["boundary"]
-	if !ok {
+	paramsInsensitiveKeys := Headers(params)
+	boundary := strings.TrimSpace(paramsInsensitiveKeys.MustGet("boundary"))
+	if len(boundary) == 0 {
 		return nil, ContentTypeHeaderMissingBoundaryError
 	}
 
