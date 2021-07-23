@@ -18,6 +18,7 @@ var (
 	ContentTypeHeaderMissingBoundaryError = errors.New("content type header missing boundary error")
 )
 
+// StandardHeader converts a AWS Lambda header to a stdlib `http.Header`.
 func StandardHeader(header map[string]string) http.Header {
 	h := http.Header{}
 	for k, v := range header {
