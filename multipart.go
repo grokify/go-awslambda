@@ -26,8 +26,7 @@ func StandardHeader(header map[string]string) http.Header {
 	return h
 }
 
-// NewReaderMultipart returns a `*multipart.Reader` given an API Gateway Proxy
-// Request.
+// NewReaderMultipart returns a `*multipart.Reader` given an API Gateway Proxy Request.
 func NewReaderMultipart(req events.APIGatewayProxyRequest) (*multipart.Reader, error) {
 	headers := StandardHeader(req.Headers)
 	ct := headers.Get("content-type")
