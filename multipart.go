@@ -13,9 +13,9 @@ import (
 )
 
 var (
-	ContentTypeHeaderMissingError         = errors.New("content type header missing")
-	ContentTypeHeaderNotMultipartError    = errors.New("content type header not multipart error")
-	ContentTypeHeaderMissingBoundaryError = errors.New("content type header missing boundary error")
+	ErrContentTypeHeaderMissing         = errors.New("content type header missing")
+	ErrContentTypeHeaderNotMultipart    = errors.New("content type header not multipart error")
+	ErrContentTypeHeaderMissingBoundary = errors.New("content type header missing boundary error")
 )
 
 // StandardHeader converts a AWS Lambda header to a stdlib `http.Header`.
@@ -32,7 +32,7 @@ func NewReaderMultipart(req events.APIGatewayProxyRequest) (*multipart.Reader, e
 	headers := StandardHeader(req.Headers)
 	ct := headers.Get("content-type")
 	if len(ct) == 0 {
-		return nil, ContentTypeHeaderMissingError
+		return nil, ErrContentTypeHeaderMissing
 	}
 
 	mediatype, params, err := mime.ParseMediaType(ct)
@@ -41,13 +41,13 @@ func NewReaderMultipart(req events.APIGatewayProxyRequest) (*multipart.Reader, e
 	}
 
 	if strings.Index(strings.ToLower(strings.TrimSpace(mediatype)), "multipart/") != 0 {
-		return nil, ContentTypeHeaderNotMultipartError
+		return nil, ErrContentTypeHeaderNotMultipart
 	}
 
 	paramsInsensitiveKeys := StandardHeader(params)
 	boundary := paramsInsensitiveKeys.Get("boundary")
 	if len(boundary) == 0 {
-		return nil, ContentTypeHeaderMissingBoundaryError
+		return nil, ErrContentTypeHeaderMissingBoundary
 	}
 
 	if req.IsBase64Encoded {
