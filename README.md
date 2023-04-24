@@ -17,6 +17,16 @@ See the docs on [pkg.go.dev](https://pkg.go.dev/github.com/grokify/go-awslambda)
 $ go get github.com/grokify/go-awslambda/...
 ```
 
+## Usage
+
+See the example here:
+
+[`examples/multipart/main.go`](examples/multipart/main.go)
+
+A description is available on Stack Overflow here:
+
+https://stackoverflow.com/a/68496889/1908967
+
 ## Contributing
 
 Features, Issues, and Pull Requests are always welcome.
