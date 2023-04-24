@@ -33,8 +33,8 @@ Please report issues and feature requests on [Github](https://github.com/grokify
 
  [used-by-svg]: https://sourcegraph.com/github.com/grokify/go-awslambda/-/badge.svg
  [used-by-url]: https://sourcegraph.com/github.com/grokify/go-awslambda?badge
- [build-status-svg]: https://github.com/grokify/go-awslambda/workflows/go%20build/badge.svg?branch=master
- [build-status-url]: https://github.com/grokify/go-awslambda/actions
+ [build-status-svg]: https://github.com/grokify/go-awslambda/workflows/test/badge.svg?branch=master
+ [build-status-url]: https://github.com/grokify/go-awslambda/actions/workflows/test.yaml
  [goreport-svg]: https://goreportcard.com/badge/github.com/grokify/go-awslambda
  [goreport-url]: https://goreportcard.com/report/github.com/grokify/go-awslambda
  [docs-godoc-svg]: https://pkg.go.dev/badge/github.com/grokify/go-awslambda
