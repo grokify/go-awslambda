@@ -10,10 +10,10 @@ import (
 )
 
 // NewHTTPRequest returns an `*http.Request` given an `events.APIGatewayProxyRequest`.
-func NewHTTPRequest(req events.APIGatewayProxyRequest) (*http.Request, error) {
+func NewHTTPRequest(ctx context.Context, req events.APIGatewayProxyRequest) (*http.Request, error) {
 	// Adaptation from https://stackoverflow.com/a/71727175/1908967
 	httpReq, err := http.NewRequestWithContext(
-		context.Background(),
+		ctx,
 		req.HTTPMethod,
 		req.Path,
 		strings.NewReader(req.Body))
