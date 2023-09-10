@@ -19,7 +19,10 @@ $ go get github.com/grokify/go-awslambda/...
 
 ## Usage
 
-See the example here:
+* `NewHTTPRequest()` can be used to create an `*http.Request` given an `events.APIGatewayProxyRequest`.
+* `NewReaderMultipart()` can be used to create an `*multipart.Reader` given an `events.APIGatewayProxyRequest`.
+
+See the multipart example here:
 
 [`examples/multipart/main.go`](examples/multipart/main.go)
 
