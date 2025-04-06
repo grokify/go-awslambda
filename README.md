@@ -53,8 +53,8 @@ Please report issues and feature requests on [Github](https://github.com/grokify
  [used-by-url]: https://sourcegraph.com/github.com/grokify/go-awslambda?badge
  [build-status-svg]: https://github.com/grokify/gp-awslambda/actions/workflows/ci.yaml/badge.svg?branch=master
  [build-status-url]: https://github.com/grokify/go-awslambda/actions/workflows/ci.yaml
- [build-status-svg]: https://github.com/grokify/gp-awslambda/actions/workflows/lint.yaml/badge.svg?branch=master
- [build-status-url]: https://github.com/grokify/go-awslambda/actions/workflows/lint.yaml
+ [lint-status-svg]: https://github.com/grokify/gp-awslambda/actions/workflows/lint.yaml/badge.svg?branch=master
+ [lint-status-url]: https://github.com/grokify/go-awslambda/actions/workflows/lint.yaml
  [goreport-svg]: https://goreportcard.com/badge/github.com/grokify/go-awslambda
  [goreport-url]: https://goreportcard.com/report/github.com/grokify/go-awslambda
  [docs-godoc-svg]: https://pkg.go.dev/badge/github.com/grokify/go-awslambda
