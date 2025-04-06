@@ -1,6 +1,7 @@
 # Go AWS Lambda Utils
 
 [![Build Status][build-status-svg]][build-status-url]
+[![Lint Status][lint-status-svg]][lint-status-url]
 [![Go Report Card][goreport-svg]][goreport-url]
 [![Docs][docs-godoc-svg]][docs-godoc-url]
 [![License][license-svg]][license-url]
@@ -30,6 +31,10 @@ A description is available on Stack Overflow here:
 
 https://stackoverflow.com/a/68496889/1908967
 
+## More Info
+
+1. [amazon.com: Set up Lambda proxy integrations in API Gateway](https://docs.aws.amazon.com/apigateway/latest/developerguide/set-up-lambda-proxy-integrations.html#api-gateway-simple-proxy-for-lambda-input-format)
+
 ## Contributing
 
 Features, Issues, and Pull Requests are always welcome.
@@ -46,8 +51,10 @@ Please report issues and feature requests on [Github](https://github.com/grokify
 
  [used-by-svg]: https://sourcegraph.com/github.com/grokify/go-awslambda/-/badge.svg
  [used-by-url]: https://sourcegraph.com/github.com/grokify/go-awslambda?badge
- [build-status-svg]: https://github.com/grokify/go-awslambda/workflows/test/badge.svg?branch=master
- [build-status-url]: https://github.com/grokify/go-awslambda/actions/workflows/test.yaml
+ [build-status-svg]: https://github.com/grokify/gp-awslambda/actions/workflows/ci.yaml/badge.svg?branch=master
+ [build-status-url]: https://github.com/grokify/go-awslambda/actions/workflows/ci.yaml
+ [build-status-svg]: https://github.com/grokify/gp-awslambda/actions/workflows/lint.yaml/badge.svg?branch=master
+ [build-status-url]: https://github.com/grokify/go-awslambda/actions/workflows/lint.yaml
  [goreport-svg]: https://goreportcard.com/badge/github.com/grokify/go-awslambda
  [goreport-url]: https://goreportcard.com/report/github.com/grokify/go-awslambda
  [docs-godoc-svg]: https://pkg.go.dev/badge/github.com/grokify/go-awslambda
